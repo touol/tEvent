@@ -8,7 +8,7 @@ with all the file structure for beginning MODx Extra development pre-setup.
 
 First, clone this repository somewhere on your development machine:
 
-`git clone http://github.com/bezumkin/tEvent.git ./`
+`git clone http://github.com/touol/tEvent.git ./`
 
 Then, create the target directory where you want to create the file.
 
