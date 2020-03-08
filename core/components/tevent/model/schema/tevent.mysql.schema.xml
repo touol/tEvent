@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="tevent" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="tevent"
+       version="1.1">
+
+    <object class="tEventItem" table="tevent_items" extends="xPDOSimpleObject">
+        <field key="res_id" dbtype="int" precision="10" phptype="integer" null="true"/>
+		<field key="family" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+		<field key="firstname" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+		<field key="lastname" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+        <field key="specialization" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+		<field key="country" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+		<field key="place_work" dbtype="varchar" precision="250" phptype="string" null="false" default=""/>
+		<field key="post" dbtype="varchar" precision="250" phptype="string" null="false" default=""/>
+		<field key="phone" dbtype="varchar" precision="20" phptype="string" null="false" default=""/>
+		<field key="email" dbtype="varchar" precision="200" phptype="string" null="false" default="" />
+		<field key="sentdate" dbtype="datetime" phptype="datetime" null="true"/>
+		<field key="query_hear" dbtype="text" phptype="string" null="true" default=""/>
+		<field key="sity" dbtype="varchar" precision="150" phptype="string" null="false" default=""/>
+		
+        <index alias="res_id" name="res_id" primary="false" unique="false" type="BTREE">
+            <column key="res_id" length="" collation="A" null="false"/>
+        </index>
+    </object>
+	
+	<object class="tEventField" table="tevent_fields" extends="xPDOSimpleObject">
+		<field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+		<field key="label" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+		<field key="dbtype" dbtype="varchar" precision="100" phptype="string" null="false" default="varchar"/>
+		<field key="precision" dbtype="int" precision="10" phptype="integer" null="true"/>
+		<field key="phptype" dbtype="varchar" precision="100" phptype="string" null="false" default="string"/>
+		<field key="xtype" dbtype="varchar" precision="100" phptype="string" null="false" default="textfield"/>
+		<field key="sort" dbtype="int" precision="10" phptype="integer" null="true"/>
+		<field key="validate" dbtype="varchar" precision="100" phptype="string" null="false" default=""/>
+		<field key="select_query" dbtype="varchar" precision="500" phptype="string" null="null"/>
+		<field key="filter" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="0"/>
+		<field key="active" dbtype="tinyint" precision="1" phptype="boolean" null="true" default="1"/>
+
+		
+        <index alias="sort" name="sort" primary="false" unique="false" type="BTREE">
+            <column key="sort" length="" collation="A" null="false"/>
+        </index>
+    </object>
+</model>

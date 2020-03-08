@@ -1,0 +1,199 @@
+<?php
+/** @var xPDOTransport $transport */
+/** @var array $options */
+/** @var modX $modx */
+if ($transport->xpdo) {
+    $modx =& $transport->xpdo;
+	/** @var array $options */
+	switch ($options[xPDOTransport::PACKAGE_ACTION]) {
+		case xPDOTransport::ACTION_INSTALL:
+			$fields = [
+				[
+					'name'=>'res_id',
+					'label'=>'Мероприятие',
+					'dbtype'=>'int',
+					'precision'=>10,
+					'phptype'=>'integer',
+					'xtype'=>'tevent-univers-combo',
+					'sort'=>1,
+					'validate'=>'required',
+					'select_query'=>
+'{
+    "parents":"0",
+    "template":"1"
+}',
+					'filter'=>true,
+					'active'=>true,
+				],
+				[
+					'name'=>'family',
+					'label'=>'Фамилия',
+					'dbtype'=>'varchar',
+					'precision'=>100,
+					'phptype'=>'string',
+					'xtype'=>'textfield',
+					'sort'=>2,
+					'validate'=>'required',
+					//'select_query'=>'',
+					'filter'=>true,
+					'active'=>true,
+				],
+				[
+					'name'=>'firstname',
+					'label'=>'Имя',
+					'dbtype'=>'varchar',
+					'precision'=>100,
+					'phptype'=>'string',
+					'xtype'=>'textfield',
+					'sort'=>3,
+					'validate'=>'required',
+					//'select_query'=>'',
+					'filter'=>false,
+					'active'=>true,
+				],
+				[
+					'name'=>'lastname',
+					'label'=>'Отчество',
+					'dbtype'=>'varchar',
+					'precision'=>100,
+					'phptype'=>'string',
+					'xtype'=>'textfield',
+					'sort'=>4,
+					'validate'=>'required',
+					//'select_query'=>'',
+					'filter'=>false,
+					'active'=>true,
+				],
+				[
+					'name'=>'specialization',
+					'label'=>'Специализация',
+					'dbtype'=>'varchar',
+					'precision'=>100,
+					'phptype'=>'string',
+					'xtype'=>'textfield',
+					'sort'=>5,
+					'validate'=>'required',
+					//'select_query'=>'',
+					'filter'=>false,
+					'active'=>true,
+				],
+				[
+					'name'=>'country',
+					'label'=>'Страна',
+					'dbtype'=>'varchar',
+					'precision'=>100,
+					'phptype'=>'string',
+					'xtype'=>'textfield',
+					'sort'=>6,
+					'validate'=>'required',
+					//'select_query'=>'',
+					'filter'=>false,
+					'active'=>true,
+				],
+				[
+					'name'=>'sity',
+					'label'=>'Город',
+					'dbtype'=>'varchar',
+					'precision'=>100,
+					'phptype'=>'string',
+					'xtype'=>'textfield',
+					'sort'=>7,
+					'validate'=>'required',
+					//'select_query'=>'',
+					'filter'=>false,
+					'active'=>true,
+				],
+				[
+					'name'=>'place_work',
+					'label'=>'Место работы',
+					'dbtype'=>'varchar',
+					'precision'=>100,
+					'phptype'=>'string',
+					'xtype'=>'textfield',
+					'sort'=>8,
+					'validate'=>'required',
+					//'select_query'=>'',
+					'filter'=>false,
+					'active'=>true,
+				],
+				[
+					'name'=>'post',
+					'label'=>'Должность',
+					'dbtype'=>'varchar',
+					'precision'=>100,
+					'phptype'=>'string',
+					'xtype'=>'textfield',
+					'sort'=>9,
+					'validate'=>'required',
+					//'select_query'=>'',
+					'filter'=>false,
+					'active'=>true,
+				],
+				[
+					'name'=>'phone',
+					'label'=>'Телефон',
+					'dbtype'=>'varchar',
+					'precision'=>100,
+					'phptype'=>'string',
+					'xtype'=>'textfield',
+					'sort'=>10,
+					'validate'=>'required',
+					//'select_query'=>'',
+					'filter'=>false,
+					'active'=>true,
+				],
+				[
+					'name'=>'email',
+					'label'=>'Почта',
+					'dbtype'=>'varchar',
+					'precision'=>100,
+					'phptype'=>'string',
+					'xtype'=>'textfield',
+					'sort'=>11,
+					'validate'=>'email:required',
+					//'select_query'=>'',
+					'filter'=>true,
+					'active'=>true,
+				],
+				[
+					'name'=>'query_hear',
+					'label'=>'Опрос',
+					'dbtype'=>'varchar',
+					'precision'=>100,
+					'phptype'=>'string',
+					'xtype'=>'textfield',
+					'sort'=>12,
+					'validate'=>'required',
+					//'select_query'=>'',
+					'filter'=>false,
+					'active'=>true,
+				],
+				[
+					'name'=>'sentdate',
+					'label'=>'Дата',
+					'dbtype'=>'datetime',
+					//'precision'=>100,
+					'phptype'=>'datetime',
+					'xtype'=>'xdatetime',
+					'sort'=>13,
+					'validate'=>'',
+					//'select_query'=>'',
+					'filter'=>true,
+					'active'=>true,
+				],
+			];
+			foreach($fields as $field){
+				if(!$in_field = $modx->getObject('tEventField',['name'=>$field['name']])){
+					if($in_field = $modx->newObject('tEventField')){
+						$in_field->fromArray($field);
+						if(!$in_field->save()) $modx->log(xPDO::LOG_LEVEL_ERROR, "[tEvent] field {$field['name']} not add!");
+					}
+				}
+			}
+			$modx->log(xPDO::LOG_LEVEL_INFO, '[tEvent] Successfully add Default fields!');
+			break;
+
+	}
+}
+
+return true;
